@@ -12,4 +12,4 @@ npm install
 npm run dev
 ```
 
-Accessible sur : [http://localhost:3000](http://localhost:3000)
+=> Page Home accessible sur : [http://localhost:3000/home](http://localhost:3000/home)
