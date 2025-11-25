@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import NextButton from './NextButton';
 
 import { Dispatch, SetStateAction } from 'react';
 import { Slider } from '../ui/slider';
@@ -88,12 +89,7 @@ const OriginSection = ({
       </div>
 
       <div className="flex justify-center">
-        <button
-          className="w-[232px] h-14 flex justify-center items-center uppercase bg-(--color-primary) rounded-[12px] cursor-pointer"
-          onClick={handleNext}
-        >
-          <span className="font-medium text-[24px]">Suivant</span>
-        </button>
+        <NextButton onClick={handleNext} />
       </div>
     </div>
   );

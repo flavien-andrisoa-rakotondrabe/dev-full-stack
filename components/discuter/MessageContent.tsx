@@ -43,7 +43,7 @@ const discussionData: {
 
 const MessageContent = () => {
   return (
-    <div className="min-w-[500px] w-[500px] h-[566px] flex flex-col gap-10 border border-[#252525] rounded-4xl">
+    <div className="min-w-[524px] w-[524px] h-[566px] flex flex-col gap-10 border border-[#252525] rounded-4xl">
       <div className="w-full h-[88px] flex items-center justify-between p-6 border-b border-[#242424]">
         <div className="flex items-center gap-2">
           <Image

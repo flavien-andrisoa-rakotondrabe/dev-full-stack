@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
+import NextButton from './NextButton';
 
-import { corpsTypes, poitrineTypes } from '@/lib/options';
+import { corpsOptions, poitrineOptions } from '@/lib/options';
 import { OptionType } from '@/types/optionType';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -27,7 +28,7 @@ const CorpsSection = ({
         </h3>
         <div className="flex justify-center">
           <div className="flex gap-4">
-            {corpsTypes.map((item) => (
+            {corpsOptions.map((item) => (
               <div
                 key={`cheveux-types-${item.title}`}
                 className="relative w-[167px] h-[206px] cursor-pointer"
@@ -58,7 +59,7 @@ const CorpsSection = ({
         </h3>
         <div className="flex justify-center">
           <div className="flex gap-4">
-            {poitrineTypes.map((item) => (
+            {poitrineOptions.map((item) => (
               <div
                 key={`origin-${item.title}`}
                 className="relative w-[222px] h-[226px] cursor-pointer"
@@ -84,12 +85,7 @@ const CorpsSection = ({
       </div>
 
       <div className="flex justify-center">
-        <button
-          className="w-[232px] h-14 flex justify-center items-center uppercase bg-(--color-primary) rounded-[12px] cursor-pointer"
-          onClick={handleNext}
-        >
-          <span className="font-medium text-[24px]">Suivant</span>
-        </button>
+        <NextButton onClick={handleNext} />
       </div>
     </div>
   );

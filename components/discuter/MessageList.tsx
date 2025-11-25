@@ -25,7 +25,7 @@ const messageData = [
 
 const MessageList = () => {
   return (
-    <div className="min-w-[300px] w-[300px] h-[566px] flex flex-col gap-10 p-6 border border-[#252525] rounded-4xl">
+    <div className="min-w-[320px] w-[320px] h-[566px] flex flex-col gap-10 p-6 border border-[#252525] rounded-4xl">
       <div className="relative flex items-center">
         <input
           type="text"

@@ -1,14 +1,17 @@
 'use client';
 
+import Popup from '../Popup';
 import Image from 'next/image';
+import NextButton from './NextButton';
 
-import { personalityTypes } from '@/lib/options';
-import { Dispatch, SetStateAction, useState } from 'react';
 import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
+  penchantOptions,
+  personalityOptions,
+  professionOptions,
+  relationOptions,
+  voixOptions,
+} from '@/lib/options';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 type PersonalityType =
   | 'personality'
@@ -20,10 +23,26 @@ type PersonalityType =
 const NameSection = ({
   personality,
   setPersonality,
+  relation,
+  setRelation,
+  profession,
+  setProfession,
+  penchant,
+  setPenchant,
+  voix,
+  setVoix,
   handleNext,
 }: {
   personality: string;
   setPersonality: Dispatch<SetStateAction<string>>;
+  relation: string;
+  setRelation: Dispatch<SetStateAction<string>>;
+  profession: string;
+  setProfession: Dispatch<SetStateAction<string>>;
+  penchant: string;
+  setPenchant: Dispatch<SetStateAction<string>>;
+  voix: string;
+  setVoix: Dispatch<SetStateAction<string>>;
   handleNext: () => void;
 }) => {
   const personalityData: {
@@ -39,19 +58,23 @@ const NameSection = ({
     {
       title: 'Choisir le type de relation',
       tag: 'relation',
-      value: 'Inconnue',
+      value: relation,
     },
-    { title: 'Choisir la profession', tag: 'profession', value: 'Étudiante' },
+    { title: 'Choisir la profession', tag: 'profession', value: profession },
     {
       title: 'Quels sont ses penchants sexuels',
       tag: 'penchant',
-      value: 'Dirty Talk',
+      value: penchant,
     },
-    { title: 'Choisir la voix', tag: 'voix', value: 'Voix 4' },
+    { title: 'Choisir la voix', tag: 'voix', value: voix },
   ];
   const [open, setOpen] = useState<PersonalityType | null>(null);
   const [name, setName] = useState('');
   const [actualPersonality, setActualPersonality] = useState(personality);
+  const [actualProfession, setActualProfession] = useState(profession);
+  const [actualRelation, setActualRelation] = useState(relation);
+  const [actualPenchant, setActualPenchant] = useState(penchant);
+  const [actualVoix, setActualVoix] = useState(voix);
 
   return (
     <div className="relative flex flex-col gap-16">
@@ -114,79 +137,186 @@ const NameSection = ({
         </div>
       </div>
 
-      <AlertDialog open={open !== null}>
-        <AlertDialogTitle className="hidden"></AlertDialogTitle>
-        <AlertDialogContent
-          className="max-w-none! w-full h-screen backdrop-blur-2xl border-none p-0 rounded-none"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
-          }}
-        >
-          <div className="relative w-full h-full flex flex-col justify-between py-20">
-            <Image
-              src="/icons/close.svg"
-              alt="Close"
-              width={32}
-              height={32}
-              className="absolute top-4 right-4 cursor-pointer"
-              onClick={() => setOpen(null)}
-            />
+      <Popup
+        open={open === 'personality'}
+        title="Modifier la personnalité"
+        onClose={() => {
+          setOpen(null);
+          setActualPersonality(personality);
+        }}
+        handleSubmit={() => {
+          setPersonality(actualPersonality);
+          setOpen(null);
+        }}
+      >
+        <div className="max-w-[720px] flex flex-wrap justify-center gap-6">
+          {personalityOptions.map((item) => (
+            <div
+              key={`personality-${item}`}
+              onClick={() => setActualPersonality(item)}
+              className={`flex justify-center items-center p-4 rounded-2xl ${
+                actualPersonality === item
+                  ? 'bg-(--color-primary)'
+                  : 'bg-[#727272] hover:text-(--color-primary) cursor-pointer'
+              }`}
+            >
+              <p className="font-bold text-[20px] select-none">{item}</p>
+            </div>
+          ))}
+        </div>
+      </Popup>
 
-            <div className="flex flex-col items-center gap-16">
-              <h5 className="text-center font-bold text-[24px]">
-                Modifier la personnalité
-              </h5>
-              <div className="max-w-[850px] flex flex-wrap justify-center gap-6">
-                {personalityTypes.map((item) => (
-                  <div
-                    key={`personality-${item}`}
-                    onClick={() => setActualPersonality(item)}
-                    className={`flex justify-center items-center p-5 rounded-2xl ${
-                      actualPersonality === item
-                        ? 'bg-(--color-primary)'
-                        : 'bg-[#727272] hover:text-(--color-primary) cursor-pointer'
-                    }`}
-                  >
-                    <p className="font-bold text-[24px] select-none">{item}</p>
-                  </div>
-                ))}
+      <Popup
+        open={open === 'relation'}
+        title="Modifier la relation"
+        onClose={() => {
+          setOpen(null);
+          setActualRelation(relation);
+        }}
+        handleSubmit={() => {
+          setRelation(actualRelation);
+          setOpen(null);
+        }}
+      >
+        <div className="max-w-[800px] flex flex-wrap justify-center gap-6">
+          {relationOptions.map((item) => (
+            <div
+              key={`relation-${item.title}`}
+              onClick={() => setActualRelation(item.title)}
+              className={`relative flex justify-center items-center rounded-2xl ${
+                actualRelation === item.title
+                  ? 'outline-4 outline-(--color-primary)'
+                  : 'hover:text-(--color-primary) cursor-pointer'
+              }`}
+            >
+              <Image
+                src={item.src}
+                alt={item.title}
+                width={140}
+                height={160}
+                className="max-w-[140px] max-h-40 min-w-[140px] min-h-40 object-cover rounded-2xl"
+              />
+              <p className="absolute bottom-2 font-bold text-[20px] select-none">
+                {item.title}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Popup>
+
+      <Popup
+        open={open === 'profession'}
+        title="Modifier la profession"
+        onClose={() => {
+          setOpen(null);
+          setActualProfession(profession);
+        }}
+        handleSubmit={() => {
+          setProfession(actualProfession);
+          setOpen(null);
+        }}
+      >
+        <div className="max-w-[850px] flex flex-wrap justify-center gap-6">
+          {professionOptions.map((item) => (
+            <div
+              key={`profession-${item}`}
+              onClick={() => setActualProfession(item)}
+              className={`flex justify-center items-center p-4 rounded-2xl ${
+                actualProfession === item
+                  ? 'bg-(--color-primary)'
+                  : 'bg-[#727272] hover:text-(--color-primary) cursor-pointer'
+              }`}
+            >
+              <p className="font-bold text-[20px] select-none">{item}</p>
+            </div>
+          ))}
+        </div>
+      </Popup>
+
+      <Popup
+        open={open === 'penchant'}
+        title="Modifier le penchant sexuel"
+        onClose={() => {
+          setOpen(null);
+          setActualPenchant(penchant);
+        }}
+        handleSubmit={() => {
+          setPenchant(actualPenchant);
+          setOpen(null);
+        }}
+      >
+        <div className="max-w-[910px] flex flex-wrap justify-center gap-6">
+          {penchantOptions.map((item) => (
+            <div
+              key={`penchant-${item}`}
+              onClick={() => setActualPenchant(item)}
+              className={`flex justify-center items-center p-4 rounded-2xl ${
+                actualPenchant === item
+                  ? 'bg-(--color-primary)'
+                  : 'bg-[#727272] hover:text-(--color-primary) cursor-pointer'
+              }`}
+            >
+              <p className="font-bold text-[20px] select-none">{item}</p>
+            </div>
+          ))}
+        </div>
+      </Popup>
+
+      <Popup
+        open={open === 'voix'}
+        title="Modifier la voix"
+        onClose={() => {
+          setOpen(null);
+          setActualVoix(voix);
+        }}
+        handleSubmit={() => {
+          setVoix(actualVoix);
+          setOpen(null);
+        }}
+      >
+        <div className="max-w-[800px] flex flex-wrap justify-center gap-6">
+          {voixOptions.map((item) => (
+            <div
+              key={`voix-${item.title}`}
+              onClick={() => setActualVoix(item.title)}
+              className={`relative w-[140px] h-[170px] flex flex-col gap-4 justify-center items-center rounded-3xl bg-[#161616] ${
+                actualVoix === item.title
+                  ? 'outline-4 outline-(--color-primary)'
+                  : 'hover:text-(--color-primary)'
+              }`}
+            >
+              <div className="relative w-16 h-16 flex justify-center items-center cursor-pointer">
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  width={64}
+                  height={64}
+                  className="max-w-full max-h-full min-w-full min-h-full object-cover rounded-full"
+                />
+                <Image
+                  src="/icons/play-simple.svg"
+                  alt="Play"
+                  width={16}
+                  height={16}
+                  className="absolute cursor-pointer"
+                />
+              </div>
+
+              <div className="flex flex-col items-center gap-1">
+                <h6 className="font-bold text-[18px] select-none">
+                  {item.title}
+                </h6>
+                <p className="font-400 text-[12px] text-[#938E8E]">
+                  {item.description}
+                </p>
               </div>
             </div>
-
-            <div className="flex justify-center gap-8">
-              <button
-                type="reset"
-                onClick={() => {
-                  setActualPersonality(personality);
-                  setOpen(null);
-                }}
-                className="font-medium text-[24px] px-10 py-5 bg-[#575757] rounded-[12px] select-none cursor-pointer"
-              >
-                Annuler
-              </button>
-              <button
-                type="submit"
-                onClick={() => {
-                  setPersonality(actualPersonality);
-                  setOpen(null);
-                }}
-                className="font-medium text-[24px] px-10 py-5 bg-(--color-primary) rounded-[12px] select-none cursor-pointer"
-              >
-                Enregistrer les modification
-              </button>
-            </div>
-          </div>
-        </AlertDialogContent>
-      </AlertDialog>
+          ))}
+        </div>
+      </Popup>
 
       <div className="flex justify-center">
-        <button
-          className="w-[232px] h-14 flex justify-center items-center uppercase bg-(--color-primary) rounded-[12px] cursor-pointer"
-          onClick={handleNext}
-        >
-          <span className="font-medium text-[24px]">Suivant</span>
-        </button>
+        <NextButton onClick={handleNext} />
       </div>
     </div>
   );

@@ -23,14 +23,14 @@ const userInfos = [
 
 const MessageDetails = () => {
   return (
-    <div className="flex flex-col gap-[21px] w-[400px]">
+    <div className="flex-1 flex flex-col gap-[21px]">
       <div className="relative flex items-center">
         <Image
           src="/images/elizabeth.png"
           alt="Elizabeth"
           width={400}
           height={420}
-          className="max-h-[420px] max- min-h-[420px] object-cover rounded-4xl"
+          className="w-full max-h-[430px] min-h-[430px] object-cover rounded-4xl"
         />
         <div className="absolute w-full flex justify-between">
           <Image

@@ -4,18 +4,22 @@ import TopMenu from '../TopMenu';
 import OriginSection from './OriginSection';
 import CheveuxSection from './CheveuxSection';
 import CorpsSection from './CorpsSection';
+import NameSection from './NameSection';
 
 import { useState } from 'react';
 import {
   cheveuxColors,
-  cheveuxTypes,
-  corpsTypes,
+  cheveuxOptions,
+  corpsOptions,
   eyesColors,
   originOptions,
-  personalityTypes,
-  poitrineTypes,
+  penchantOptions,
+  personalityOptions,
+  poitrineOptions,
+  professionOptions,
+  relationOptions,
+  voixOptions,
 } from '@/lib/options';
-import NameSection from './NameSection';
 
 const steps = ['origin', 'cheveux', 'corps', 'name', 'generate'];
 
@@ -23,14 +27,18 @@ const CreerModeleIAComponent = () => {
   const [origin, setOrigin] = useState(originOptions[0]);
   const [age, setAge] = useState(22);
 
-  const [cheveuxType, setCheveuxType] = useState(cheveuxTypes[0]);
+  const [cheveuxType, setCheveuxType] = useState(cheveuxOptions[0]);
   const [cheveuxColor, setCheveuxColor] = useState(cheveuxColors[0]);
   const [eyesColor, setEyesColor] = useState(eyesColors[0]);
 
-  const [corpsType, setCorpsType] = useState(corpsTypes[0]);
-  const [poitrineType, setPoitrineType] = useState(poitrineTypes[0]);
+  const [corpsType, setCorpsType] = useState(corpsOptions[0]);
+  const [poitrineType, setPoitrineType] = useState(poitrineOptions[0]);
 
-  const [personality, setPersonality] = useState(personalityTypes[2]);
+  const [personality, setPersonality] = useState(personalityOptions[2]);
+  const [relation, setRelation] = useState(relationOptions[2].title);
+  const [profession, setProfession] = useState(professionOptions[2]);
+  const [penchant, setPenchant] = useState(penchantOptions[2]);
+  const [voix, setVoix] = useState(voixOptions[2].title);
 
   const [actualStep, setActualStep] = useState(steps[0]);
 
@@ -84,6 +92,14 @@ const CreerModeleIAComponent = () => {
             <NameSection
               personality={personality}
               setPersonality={setPersonality}
+              relation={relation}
+              setRelation={setRelation}
+              profession={profession}
+              setProfession={setProfession}
+              penchant={penchant}
+              setPenchant={setPenchant}
+              voix={voix}
+              setVoix={setVoix}
               handleNext={handleNext}
             />
           )

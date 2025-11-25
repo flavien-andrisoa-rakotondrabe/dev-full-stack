@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
+import NextButton from './NextButton';
 
-import { cheveuxColors, cheveuxTypes, eyesColors } from '@/lib/options';
+import { cheveuxColors, cheveuxOptions, eyesColors } from '@/lib/options';
 import { OptionType } from '@/types/optionType';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -31,7 +32,7 @@ const CheveuxSection = ({
         </h3>
         <div className="flex justify-center">
           <div className="flex gap-4">
-            {cheveuxTypes.map((item) => (
+            {cheveuxOptions.map((item) => (
               <div
                 key={`cheveux-types-${item.title}`}
                 className="relative w-[167px] h-[206px] cursor-pointer"
@@ -119,12 +120,7 @@ const CheveuxSection = ({
       </div>
 
       <div className="flex justify-center">
-        <button
-          className="w-[232px] h-14 flex justify-center items-center uppercase bg-(--color-primary) rounded-[12px] cursor-pointer"
-          onClick={handleNext}
-        >
-          <span className="font-medium text-[24px]">Suivant</span>
-        </button>
+        <NextButton onClick={handleNext} />
       </div>
     </div>
   );
