@@ -40,3 +40,18 @@ export const poitrineTypes = [
   { title: 'Forte', src: '/images/poitrine/forte.png' },
   { title: 'Extra large', src: '/images/poitrine/extra-large.png' },
 ];
+
+export const personalityTypes = [
+  'Nympho',
+  'Amant',
+  'Soumise',
+  'Dominatrice',
+  'Tentatrice',
+  'Innocente',
+  'Soignante',
+  'Expérimentatrice',
+  'Méchante',
+  'Confident',
+  'Timide',
+  'Reine',
+];

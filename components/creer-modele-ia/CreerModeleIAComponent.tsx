@@ -12,6 +12,7 @@ import {
   corpsTypes,
   eyesColors,
   originOptions,
+  personalityTypes,
   poitrineTypes,
 } from '@/lib/options';
 import NameSection from './NameSection';
@@ -28,6 +29,8 @@ const CreerModeleIAComponent = () => {
 
   const [corpsType, setCorpsType] = useState(corpsTypes[0]);
   const [poitrineType, setPoitrineType] = useState(poitrineTypes[0]);
+
+  const [personality, setPersonality] = useState(personalityTypes[2]);
 
   const [actualStep, setActualStep] = useState(steps[0]);
 
@@ -79,10 +82,8 @@ const CreerModeleIAComponent = () => {
         ) : (
           actualStep === steps[3] && (
             <NameSection
-              corpsType={corpsType}
-              setCorpsType={setCorpsType}
-              poitrineType={poitrineType}
-              setPoitrineType={setPoitrineType}
+              personality={personality}
+              setPersonality={setPersonality}
               handleNext={handleNext}
             />
           )
