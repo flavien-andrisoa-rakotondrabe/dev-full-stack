@@ -8,7 +8,7 @@ const SideBarLayout = ({ children }: { children: ReactNode }) => {
       <div className="fixed left-0 top-0 bottom-0">
         <SideBar />
       </div>
-      <div className="ms-[117px] lg:ms-[352px]">{children}</div>
+      <div className="ms-[117px] lg:ms-[352px] overflow-auto">{children}</div>
     </div>
   );
 };

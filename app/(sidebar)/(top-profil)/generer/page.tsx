@@ -1,3 +1,5 @@
+import GenererComponent from '@/components/generer/GenererComponent';
+
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const GenererPage = () => {
-  return <div></div>;
+  return <GenererComponent />;
 };
 
 export default GenererPage;

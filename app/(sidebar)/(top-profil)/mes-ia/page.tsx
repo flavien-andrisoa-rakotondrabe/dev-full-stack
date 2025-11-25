@@ -1,3 +1,5 @@
+import MesIAComponent from '@/components/mes-ia/MesIAComponent';
+
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const MesIAPage = () => {
-  return <div></div>;
+  return <MesIAComponent />;
 };
 
 export default MesIAPage;

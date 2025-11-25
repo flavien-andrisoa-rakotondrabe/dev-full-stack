@@ -10,7 +10,7 @@ const SideBar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-[117px] lg:w-[352px] h-full p-2 border-r border-[#FBF9F9]">
+    <div className="w-[117px] lg:w-[352px] h-full z-50 p-2 border-r border-[#FBF9F9] bg-[#0a0a0a]">
       <Link href="/" className="flex pt-[17px] ps-8 lg:ps-10">
         <Image
           src="/images/logo.svg"

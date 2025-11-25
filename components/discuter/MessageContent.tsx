@@ -43,7 +43,7 @@ const discussionData: {
 
 const MessageContent = () => {
   return (
-    <div className="w-[524px] flex flex-col gap-10 border border-[#252525] rounded-4xl">
+    <div className="min-w-[500px] w-[500px] h-[566px] flex flex-col gap-10 border border-[#252525] rounded-4xl">
       <div className="w-full h-[88px] flex items-center justify-between p-6 border-b border-[#242424]">
         <div className="flex items-center gap-2">
           <Image
@@ -156,7 +156,7 @@ const MessageContent = () => {
           <input
             type="text"
             placeholder="Votre message"
-            className="w-full h-16 px-[18px] py-[22px] rounded-full font-400 text-[16px]"
+            className="w-full h-16 px-[18px] py-[22px] rounded-full font-400 text-[16px] backdrop-blur-2xl"
             style={{
               background:
                 'linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 100%)',

@@ -25,12 +25,12 @@ const messageData = [
 
 const MessageList = () => {
   return (
-    <div className="w-[320px] flex flex-col gap-10 p-6 border border-[#252525] rounded-4xl">
+    <div className="min-w-[300px] w-[300px] h-[566px] flex flex-col gap-10 p-6 border border-[#252525] rounded-4xl">
       <div className="relative flex items-center">
         <input
           type="text"
           placeholder="Rechercher"
-          className="w-full h-11 rounded-4xl px-5 py-3 text-[16px] font-400 text-[#968C8C]"
+          className="w-full h-11 rounded-4xl px-5 py-3 text-[16px] font-400 text-[#968C8C] backdrop-blur-2xl -z-1"
           style={{
             background:
               'linear-gradient(90deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',

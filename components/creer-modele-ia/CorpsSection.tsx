@@ -1,0 +1,98 @@
+'use client';
+
+import Image from 'next/image';
+
+import { corpsTypes, poitrineTypes } from '@/lib/options';
+import { OptionType } from '@/types/optionType';
+import { Dispatch, SetStateAction } from 'react';
+
+const CorpsSection = ({
+  corpsType,
+  setCorpsType,
+  poitrineType,
+  setPoitrineType,
+  handleNext,
+}: {
+  corpsType: OptionType;
+  setCorpsType: Dispatch<SetStateAction<OptionType>>;
+  poitrineType: OptionType;
+  setPoitrineType: Dispatch<SetStateAction<OptionType>>;
+  handleNext: () => void;
+}) => {
+  return (
+    <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-10">
+        <h3 className="font-bold text-[24px] text-[#F6F6F6] text-center">
+          Choisir le type de corps
+        </h3>
+        <div className="flex justify-center">
+          <div className="flex gap-4">
+            {corpsTypes.map((item) => (
+              <div
+                key={`cheveux-types-${item.title}`}
+                className="relative w-[167px] h-[206px] cursor-pointer"
+                onClick={() => setCorpsType(item)}
+              >
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  width={167}
+                  height={206}
+                  className="w-full h-full object-cover rounded-4xl"
+                />
+                <div className="absolute z-10 bottom-0 w-full flex justify-center p-4">
+                  <p className="font-bold text-[24px]">{item.title}</p>
+                </div>
+                {item.title !== corpsType.title && (
+                  <div className="absolute top-0 left-0 w-full h-full bg-[#000000]/63"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-10">
+        <h3 className="font-bold text-[24px] text-[#F6F6F6] text-center">
+          Choisissez la taille de poitrine
+        </h3>
+        <div className="flex justify-center">
+          <div className="flex gap-4">
+            {poitrineTypes.map((item) => (
+              <div
+                key={`origin-${item.title}`}
+                className="relative w-[222px] h-[226px] cursor-pointer"
+                onClick={() => setPoitrineType(item)}
+              >
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  width={222}
+                  height={226}
+                  className="w-full h-full object-cover rounded-4xl"
+                />
+                <div className="absolute z-10 bottom-0 w-full flex justify-center p-4">
+                  <p className="font-bold text-[24px]">{item.title}</p>
+                </div>
+                {item.title !== poitrineType.title && (
+                  <div className="absolute top-0 left-0 w-full h-full bg-[#000000]/63"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex justify-center">
+        <button
+          className="w-[232px] h-14 flex justify-center items-center uppercase bg-(--color-primary) rounded-[12px] cursor-pointer"
+          onClick={handleNext}
+        >
+          <span className="font-medium text-[24px]">Suivant</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default CorpsSection;

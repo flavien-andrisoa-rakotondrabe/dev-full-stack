@@ -1,12 +1,14 @@
+import CreerModeleIAComponent from '@/components/creer-modele-ia/CreerModeleIAComponent';
+
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Home',
-  description: 'Home',
+  title: 'Créer un modèle IA',
+  description: 'Créer un modèle IA',
 };
 
 const HomePage = () => {
-  return <div></div>;
+  return <CreerModeleIAComponent />;
 };
 
 export default HomePage;
