@@ -4,7 +4,7 @@ import Image from 'next/image';
 import NextButton from './NextButton';
 
 import { cheveuxColors, cheveuxOptions, eyesColors } from '@/lib/options';
-import { OptionType } from '@/types/optionType';
+import { OptionInterface } from '@/types/OptionInterface';
 import { Dispatch, SetStateAction } from 'react';
 
 const CheveuxSection = ({
@@ -16,12 +16,12 @@ const CheveuxSection = ({
   setEyesColor,
   handleNext,
 }: {
-  cheveuxType: OptionType;
-  setCheveuxType: Dispatch<SetStateAction<OptionType>>;
-  cheveuxColor: OptionType;
-  setCheveuxColor: Dispatch<SetStateAction<OptionType>>;
-  eyesColor: OptionType;
-  setEyesColor: Dispatch<SetStateAction<OptionType>>;
+  cheveuxType: OptionInterface;
+  setCheveuxType: Dispatch<SetStateAction<OptionInterface>>;
+  cheveuxColor: OptionInterface;
+  setCheveuxColor: Dispatch<SetStateAction<OptionInterface>>;
+  eyesColor: OptionInterface;
+  setEyesColor: Dispatch<SetStateAction<OptionInterface>>;
   handleNext: () => void;
 }) => {
   return (

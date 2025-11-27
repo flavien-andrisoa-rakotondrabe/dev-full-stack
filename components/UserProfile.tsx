@@ -1,5 +1,7 @@
 'use client';
 
+import { notLoggedRoutes } from '@/lib/route';
+import { logoutService } from '@/services/authService';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -23,6 +25,11 @@ const UserProfile = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  const handleLogout = async () => {
+    await logoutService();
+    window.location.href = notLoggedRoutes[0];
+  };
 
   return (
     <div ref={menuRef} className="relative z-50">
@@ -77,7 +84,10 @@ const UserProfile = () => {
               </svg>
               <p>Mes abonnements</p>
             </Link>
-            <div className="flex items-center gap-[21px] cursor-pointer hover:text-(--color-primary) transition">
+            <div
+              className="flex items-center gap-[21px] cursor-pointer hover:text-(--color-primary) transition"
+              onClick={handleLogout}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"

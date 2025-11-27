@@ -17,13 +17,11 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { loginSchema } from '@/schemas/authSchema';
+import { loginService } from '@/services/authService';
+import { Spinner } from '@/components/ui/spinner';
 
-const formSchema = z.object({
-  email: z.string().trim().min(1, 'Email requis').email('Email invalide'),
-  password: z.string().min(1, 'Mot de passe requis'),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof loginSchema>;
 
 const Login = ({
   setActualAuthOption,
@@ -33,7 +31,7 @@ const Login = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -41,16 +39,46 @@ const Login = ({
   });
 
   const onSubmit = async (data: FormValues) => {
-    const parseRes = formSchema.safeParse(data);
+    const parseRes = loginSchema.safeParse(data);
 
     if (parseRes.success) {
       // API CALL
       setIsLoading(true);
-      toast.success('Connexion réussie!', {
-        description: 'Accès à la plateforme',
+      const res = await loginService({
+        email: parseRes.data.email,
+        password: parseRes.data.password,
       });
 
-      // window.location.href = '/home';
+      if (res.userNotFound) {
+        form.setError('email', {
+          type: 'manual',
+          message: 'Adresse email inconnue',
+        });
+
+        setIsLoading(false);
+        return;
+      } else if (res.invalidPassword) {
+        form.setError('password', {
+          type: 'manual',
+          message: 'Mot de passe incorrect',
+        });
+
+        setIsLoading(false);
+        return;
+      } else if (res.error) {
+        toast.error('Erreur lors de la connexion', {
+          description: res.error,
+        });
+
+        setIsLoading(false);
+        return;
+      } else if (res.user?.id) {
+        toast.success('Connexion réussie!', {
+          description: 'Accès à la plateforme',
+        });
+
+        window.location.href = '/home';
+      }
     } else {
       setIsLoading(false);
       toast.success('Erreur de connexion', {
@@ -161,7 +189,7 @@ const Login = ({
                       </div>
                     </FormControl>
                     <FormMessage className="text-xs">
-                      {form.formState.errors.email?.message}
+                      {form.formState.errors.password?.message}
                     </FormMessage>
                   </FormItem>
                 )}
@@ -170,12 +198,14 @@ const Login = ({
 
             <button
               type="submit"
-              className="w-full py-3 rounded-[8px] cursor-pointer"
+              disabled={isLoading}
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-[8px] cursor-pointer"
               style={{
                 background:
                   'linear-gradient(360deg, #E21A1D 0%, #D91A1A 50%, #630202 100%)',
               }}
             >
+              {isLoading && <Spinner />}
               <span className="font-400 text-[14px]">Connexion</span>
             </button>
           </form>

@@ -2,7 +2,7 @@
 
 import qs from 'query-string';
 
-import { QueryInterface } from '@/types/queryType';
+import { QueryInterface } from '@/types/QueryInterface';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   createContext,

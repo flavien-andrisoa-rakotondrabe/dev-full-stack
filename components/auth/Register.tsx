@@ -17,14 +17,11 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { registerService } from '@/services/authService';
+import { Spinner } from '@/components/ui/spinner';
+import { registerSchema } from '@/schemas/authSchema';
 
-const formSchema = z.object({
-  pseudo: z.string().trim().min(1, 'Pseudo requis'),
-  email: z.string().trim().min(1, 'Email requis').email('Email invalide'),
-  password: z.string().min(1, 'Mot de passe requis'),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof registerSchema>;
 
 const Register = ({
   setActualAuthOption,
@@ -34,7 +31,7 @@ const Register = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       pseudo: '',
       email: '',
@@ -43,21 +40,38 @@ const Register = ({
   });
 
   const onSubmit = async (data: FormValues) => {
-    const parseRes = formSchema.safeParse(data);
+    const parseRes = registerSchema.safeParse(data);
 
     if (parseRes.success) {
       // API CALL
       setIsLoading(true);
-      toast.success('Connexion réussie!', {
-        description: 'Accès à la plateforme',
+      const res = await registerService({
+        pseudo: parseRes.data.pseudo,
+        email: parseRes.data.email,
+        password: parseRes.data.password,
       });
 
-      // window.location.href = '/home';
-    } else {
-      setIsLoading(false);
-      toast.success('Erreur de connexion', {
-        description: 'Vérifier les identifiants',
-      });
+      if (res.alreadyExist) {
+        form.setError('email', {
+          type: 'manual',
+          message: 'Adresse email déjà enregistré',
+        });
+
+        setIsLoading(false);
+        return;
+      } else if (res.error) {
+        toast.error('Erreur lors de l’inscription', {
+          description: res.error,
+        });
+
+        setIsLoading(false);
+        return;
+      } else if (res.user?.id) {
+        toast.success('Inscription réussie!', {
+          description: 'Veuillez vous connecter',
+        });
+        setActualAuthOption(authOptions[0]);
+      }
     }
   };
 
@@ -121,7 +135,7 @@ const Register = ({
                       </div>
                     </FormControl>
                     <FormMessage className="text-xs">
-                      {form.formState.errors.email?.message}
+                      {form.formState.errors.pseudo?.message}
                     </FormMessage>
                   </FormItem>
                 )}
@@ -208,7 +222,7 @@ const Register = ({
                       </div>
                     </FormControl>
                     <FormMessage className="text-xs">
-                      {form.formState.errors.email?.message}
+                      {form.formState.errors.password?.message}
                     </FormMessage>
                   </FormItem>
                 )}
@@ -217,12 +231,14 @@ const Register = ({
 
             <button
               type="submit"
-              className="w-full py-3 rounded-[8px] cursor-pointer"
+              disabled={isLoading}
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-[8px] cursor-pointer"
               style={{
                 background:
                   'linear-gradient(360deg, #E21A1D 0%, #D91A1A 50%, #630202 100%)',
               }}
             >
+              {isLoading && <Spinner />}
               <span className="font-400 text-[14px]">Créer mon compte</span>
             </button>
           </form>

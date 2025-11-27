@@ -4,11 +4,12 @@ import React from 'react';
 import qs from 'query-string';
 import Loading from '@/app/loading';
 
-import { jwtService } from '@/services/auth.service';
+import { jwtService } from '@/services/authService';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { getUserService } from '@/services/user.service';
+import { getUserService } from '@/services/userService';
 import { useDispatch } from 'react-redux';
 import { setUserReducer } from '@/redux/slices/user.slice';
+import { notLoggedRoutes, protectedRoutes, routes } from '@/lib/route';
 
 interface CurrentQueryInterface {
   step?: string | number;
@@ -45,7 +46,7 @@ export default function UserProvider({
 
   const [currentQuery, setCurrentQuery] =
     React.useState<CurrentQueryInterface | null>(null);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [userId, setUserId] = React.useState<string | number | null>(null);
 
   React.useEffect(() => {
@@ -54,7 +55,12 @@ export default function UserProvider({
       const res = await jwtService();
 
       if (isMounted) {
-        if (res.user) {
+        if (res.notAuthenticated && protectedRoutes.includes(pathname)) {
+          window.location.href = notLoggedRoutes[0];
+        } else if (res.user?.id) {
+          if (notLoggedRoutes.includes(pathname)) {
+            window.location.href = routes[0].href;
+          }
           setUserId(res.user.id);
         }
       }
@@ -74,12 +80,7 @@ export default function UserProvider({
 
         if (isMounted) {
           if (res.user) {
-            dispatch(
-              setUserReducer({
-                user: res.user,
-                cvMinuteCount: res.cvMinuteCount,
-              }),
-            );
+            dispatch(setUserReducer({ user: res.user }));
           }
         }
       })();

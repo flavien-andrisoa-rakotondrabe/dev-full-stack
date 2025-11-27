@@ -4,7 +4,7 @@ import Image from 'next/image';
 import NextButton from './NextButton';
 
 import { corpsOptions, poitrineOptions } from '@/lib/options';
-import { OptionType } from '@/types/optionType';
+import { OptionInterface } from '@/types/OptionInterface';
 import { Dispatch, SetStateAction } from 'react';
 
 const CorpsSection = ({
@@ -14,10 +14,10 @@ const CorpsSection = ({
   setPoitrineType,
   handleNext,
 }: {
-  corpsType: OptionType;
-  setCorpsType: Dispatch<SetStateAction<OptionType>>;
-  poitrineType: OptionType;
-  setPoitrineType: Dispatch<SetStateAction<OptionType>>;
+  corpsType: OptionInterface;
+  setCorpsType: Dispatch<SetStateAction<OptionInterface>>;
+  poitrineType: OptionInterface;
+  setPoitrineType: Dispatch<SetStateAction<OptionInterface>>;
   handleNext: () => void;
 }) => {
   return (

@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
 
-import ReduxProvider from '@/providers/Redux.provider';
-import ToastProvider from '@/providers/Toast.provider';
+import ReduxProvider from '@/providers/ReduxProvider';
+import ToastProvider from '@/providers/ToastProvider';
 import QueryProvider from '@/providers/QueryProvider';
-import UserProvider from '@/providers/User.provider';
+import UserProvider from '@/providers/UserProvider';
 
 const montserrat = Montserrat({
   subsets: ['latin'],

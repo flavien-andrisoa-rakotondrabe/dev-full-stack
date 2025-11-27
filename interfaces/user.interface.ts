@@ -4,6 +4,6 @@ export interface UserInterface {
   email: string;
   password: string;
 
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }

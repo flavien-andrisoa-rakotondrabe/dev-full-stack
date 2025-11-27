@@ -11,6 +11,17 @@ export const routes = [
   { label: 'Mes IA', src: '/icons/mes-ia.svg', href: '/mes-ia' },
 ];
 
+export const protectedRoutes = [
+  routes[0].href,
+  routes[1].href,
+  routes[2].href,
+  routes[3].href,
+  routes[4].href,
+  routes[5].href,
+];
+
+export const notLoggedRoutes = ['/'];
+
 export const genererMenu = ['Post', 'Au feeling', 'Mes IA'];
 
 export const genreMenu = ['Femmes', 'Hommes'];

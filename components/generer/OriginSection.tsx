@@ -6,7 +6,7 @@ import NextButton from './NextButton';
 import { Dispatch, SetStateAction } from 'react';
 import { Slider } from '../ui/slider';
 import { originOptions } from '@/lib/options';
-import { OptionType } from '@/types/optionType';
+import { OptionInterface } from '@/types/OptionInterface';
 
 const OriginSection = ({
   origin,
@@ -15,9 +15,9 @@ const OriginSection = ({
   setAge,
   handleNext,
 }: {
-  origin: OptionType;
+  origin: OptionInterface;
   age: number;
-  setOrigin: Dispatch<SetStateAction<OptionType>>;
+  setOrigin: Dispatch<SetStateAction<OptionInterface>>;
   setAge: Dispatch<SetStateAction<number>>;
   handleNext: () => void;
 }) => {

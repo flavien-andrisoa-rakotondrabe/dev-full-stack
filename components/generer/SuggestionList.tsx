@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { OptionType } from '@/types/optionType';
+import { OptionInterface } from '@/types/OptionInterface';
 
 const SuggestionList = ({
   actualValue,
@@ -8,7 +8,7 @@ const SuggestionList = ({
   onClick,
 }: {
   actualValue: string;
-  options: OptionType[];
+  options: OptionInterface[];
   onClick: (value: string) => void;
 }) => {
   return (
