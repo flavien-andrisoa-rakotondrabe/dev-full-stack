@@ -1,3 +1,5 @@
+export const authOptions = ['login', 'register'];
+
 export const originOptions = [
   { title: 'Occidental', src: '/images/occidental.png' },
   { title: 'Asiatique', src: '/images/asiatique.png' },
@@ -153,4 +155,47 @@ export const voixOptions = [
     description: 'Fantaisiste',
     src: '/images/voix/voix-9.jpg',
   },
+];
+
+export const vetementOptions = [
+  { title: 'Bikini', src: '/images/vetements/bikini.png' },
+  { title: 'Jupe', src: '/images/vetements/jupe.png' },
+  { title: 'Lingerie', src: '/images/vetements/lingerie.png' },
+  { title: 'Haute Court', src: '/images/vetements/haute-court.png' },
+  { title: 'Cuir', src: '/images/vetements/cuir.png' },
+];
+
+export const actionOptions = [
+  { title: 'Entrainement', src: '/images/actions/entrainement.png' },
+  { title: 'Bronzage', src: '/images/actions/bronzage.png' },
+  { title: 'Repas', src: '/images/actions/repas.png' },
+  { title: 'Marche', src: '/images/actions/marche.png' },
+];
+
+export const poseOptions = [
+  { title: 'Debout', src: '/images/poses/debout.png' },
+  { title: 'Assise', src: '/images/poses/assise.png' },
+  { title: 'Accroupie', src: '/images/poses/accroupie.png' },
+  { title: 'A genoux', src: '/images/poses/a-genoux.png' },
+];
+
+export const accessoireOptions = [
+  { title: 'Collier', src: '/images/accessoires/collier.png' },
+  { title: 'Lunettes', src: '/images/accessoires/lunettes.png' },
+  { title: 'Ras-de-cou', src: '/images/accessoires/ras-de-cou.png' },
+  { title: "Boucles d'oreilles", src: '/images/accessoires/boucles.png' },
+];
+
+export const sceneOptions = [
+  { title: 'Jardin', src: '/images/scenes/jardin.png' },
+  { title: 'Plage', src: '/images/scenes/plage.png' },
+  { title: 'Chambre', src: '/images/scenes/chambre.png' },
+  { title: 'Cuisine', src: '/images/scenes/cuisine.png' },
+];
+
+export const imageOptions = [
+  { value: 1, src: '/icons/generer.svg' },
+  { value: 4, src: '/icons/image-4.svg' },
+  { value: 16, src: '/icons/image-16.svg' },
+  { value: 32, src: '/icons/image-32.svg' },
 ];

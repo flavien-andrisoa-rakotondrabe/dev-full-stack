@@ -31,17 +31,13 @@ const CorpsSection = ({
             {corpsOptions.map((item) => (
               <div
                 key={`cheveux-types-${item.title}`}
-                className="relative w-[167px] h-[206px] cursor-pointer"
+                className="relative w-[167px] h-[206px] cursor-pointer rounded-4xl"
+                style={{
+                  background: `url(${item.src}) no-repeat center / cover`,
+                }}
                 onClick={() => setCorpsType(item)}
               >
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  width={167}
-                  height={206}
-                  className="w-full h-full object-cover rounded-4xl"
-                />
-                <div className="absolute z-10 bottom-0 w-full flex justify-center p-4">
+                <div className="relative z-10 w-full h-full flex justify-center items-end p-4">
                   <p className="font-bold text-[24px]">{item.title}</p>
                 </div>
                 {item.title !== corpsType.title && (
@@ -62,17 +58,13 @@ const CorpsSection = ({
             {poitrineOptions.map((item) => (
               <div
                 key={`origin-${item.title}`}
-                className="relative w-[222px] h-[226px] cursor-pointer"
+                className="relative w-[222px] h-[226px] cursor-pointer rounded-4xl"
+                style={{
+                  background: `url(${item.src}) no-repeat center / cover`,
+                }}
                 onClick={() => setPoitrineType(item)}
               >
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  width={222}
-                  height={226}
-                  className="w-full h-full object-cover rounded-4xl"
-                />
-                <div className="absolute z-10 bottom-0 w-full flex justify-center p-4">
+                <div className="relative z-10 w-full h-full flex justify-center items-end p-4">
                   <p className="font-bold text-[24px]">{item.title}</p>
                 </div>
                 {item.title !== poitrineType.title && (

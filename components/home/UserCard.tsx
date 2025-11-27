@@ -16,13 +16,10 @@ const UserCard = ({
   description?: string;
 }) => {
   return (
-    <div className="relative w-[235px] h-[295px] rounded-2xl">
-      <Image
-        src={src}
-        alt={name}
-        fill
-        className="h-full w-full object-cover rounded-2xl"
-      />
+    <div
+      className="relative w-[235px] h-[295px] rounded-2xl"
+      style={{ background: `url(${src}) no-repeat center / cover` }}
+    >
       {online && (
         <Image
           src="/icons/online.svg"
@@ -32,7 +29,7 @@ const UserCard = ({
           className="absolute top-[22px] right-[15px]"
         />
       )}
-      <div className="z-10 absolute bottom-0 flex flex-col gap-2 p-6">
+      <div className="relative w-full h-full z-10 flex flex-col justify-end gap-2 p-6">
         <h2 className="font-bold text-[20px]">{name}</h2>
         {description && (
           <p className="text-[#989898] font-400 text-[14px] line-clamp-1">

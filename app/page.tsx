@@ -1,3 +1,5 @@
+import LandingComponent from '@/components/landing/LandingComponent';
+
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function LandingPage() {
-  return <div className="w-full h-full min-h-screen"></div>;
+  return <LandingComponent />;
 }

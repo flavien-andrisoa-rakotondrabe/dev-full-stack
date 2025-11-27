@@ -35,17 +35,13 @@ const CheveuxSection = ({
             {cheveuxOptions.map((item) => (
               <div
                 key={`cheveux-types-${item.title}`}
-                className="relative w-[167px] h-[206px] cursor-pointer"
+                className="relative w-[167px] h-[206px] cursor-pointer rounded-4xl"
+                style={{
+                  background: `url(${item.src}) no-repeat center / cover`,
+                }}
                 onClick={() => setCheveuxType(item)}
               >
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  width={167}
-                  height={206}
-                  className="w-full h-full object-cover rounded-4xl"
-                />
-                <div className="absolute z-10 bottom-0 w-full flex justify-center p-4">
+                <div className="relative z-10 w-full h-full flex justify-center items-end p-4">
                   <p className="font-bold text-[24px]">{item.title}</p>
                 </div>
                 {item.title !== cheveuxType.title && (
@@ -66,17 +62,13 @@ const CheveuxSection = ({
             {cheveuxColors.map((item) => (
               <div
                 key={`origin-${item.title}`}
-                className="relative w-[167px] h-[206px] cursor-pointer"
+                className="relative w-[167px] h-[206px] cursor-pointer rounded-4xl"
+                style={{
+                  background: `url(${item.src}) no-repeat center / cover`,
+                }}
                 onClick={() => setCheveuxColor(item)}
               >
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  width={167}
-                  height={206}
-                  className="w-full h-full object-cover rounded-4xl"
-                />
-                <div className="absolute z-10 bottom-0 w-full flex justify-center p-4">
+                <div className="relative z-10 w-full h-full flex justify-center items-end p-4">
                   <p className="font-bold text-[24px]">{item.title}</p>
                 </div>
                 {item.title !== cheveuxColor.title && (
@@ -97,17 +89,13 @@ const CheveuxSection = ({
             {eyesColors.map((item) => (
               <div
                 key={`origin-${item.title}`}
-                className="relative w-[167px] h-[206px] cursor-pointer"
+                className="relative w-[167px] h-[206px] cursor-pointer rounded-4xl"
+                style={{
+                  background: `url(${item.src}) no-repeat center / cover`,
+                }}
                 onClick={() => setEyesColor(item)}
               >
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  width={167}
-                  height={206}
-                  className="w-full h-full object-cover rounded-4xl"
-                />
-                <div className="absolute z-10 bottom-0 w-full flex justify-center p-4">
+                <div className="relative z-10 w-full h-full flex justify-center items-end p-4">
                   <p className="font-bold text-[24px]">{item.title}</p>
                 </div>
                 {item.title !== eyesColor.title && (

@@ -7,7 +7,7 @@ import {
   AlertDialogContent,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { ReactNode } from 'react';
 
 const Popup = ({
   children,

@@ -25,12 +25,11 @@ const MessageDetails = () => {
   return (
     <div className="flex-1 flex flex-col gap-[21px]">
       <div className="relative flex items-center">
-        <Image
-          src="/images/elizabeth.png"
-          alt="Elizabeth"
-          width={400}
-          height={420}
-          className="w-full max-h-[430px] min-h-[430px] object-cover rounded-4xl"
+        <div
+          className="w-full h-[430px] rounded-4xl"
+          style={{
+            background: 'url(/images/elizabeth.png) no-repeat center / cover',
+          }}
         />
         <div className="absolute w-full flex justify-between">
           <Image

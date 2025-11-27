@@ -2,7 +2,7 @@
 
 import Popup from '../Popup';
 import Image from 'next/image';
-import NextButton from './NextButton';
+import NextButton from '../generer/NextButton';
 
 import {
   penchantOptions,
@@ -120,7 +120,7 @@ const NameSection = ({
             {personalityData.map((item) => (
               <div
                 key={`personality-data-${item.title}`}
-                className="w-[320px] flex flex-col gap-2 p-4 backdrop-blur-2xl rounded-2xl cursor-pointer"
+                className="w-[360px] flex flex-col gap-2 p-4 backdrop-blur-2xl rounded-2xl cursor-pointer"
                 style={{
                   background:
                     'linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
@@ -182,23 +182,26 @@ const NameSection = ({
           {relationOptions.map((item) => (
             <div
               key={`relation-${item.title}`}
-              onClick={() => setActualRelation(item.title)}
-              className={`relative flex justify-center items-center rounded-2xl ${
+              className={`relative w-[140px] h-40 flex justify-center items-end p-1 rounded-3xl ${
                 actualRelation === item.title
-                  ? 'outline-4 outline-(--color-primary)'
+                  ? ''
                   : 'hover:text-(--color-primary) cursor-pointer'
               }`}
+              style={{
+                background: `url(${item.src}) no-repeat center / cover`,
+              }}
+              onClick={() => setActualRelation(item.title)}
             >
-              <Image
-                src={item.src}
-                alt={item.title}
-                width={140}
-                height={160}
-                className="max-w-[140px] max-h-40 min-w-[140px] min-h-40 object-cover rounded-2xl"
-              />
-              <p className="absolute bottom-2 font-bold text-[20px] select-none">
-                {item.title}
-              </p>
+              <p className="font-bold text-[20px] select-none">{item.title}</p>
+              {actualRelation === item.title && (
+                <Image
+                  src="/icons/check.svg"
+                  alt="Check"
+                  width={20}
+                  height={20}
+                  className="absolute top-2 right-2"
+                />
+              )}
             </div>
           ))}
         </div>
@@ -281,18 +284,16 @@ const NameSection = ({
               onClick={() => setActualVoix(item.title)}
               className={`relative w-[140px] h-[170px] flex flex-col gap-4 justify-center items-center rounded-3xl bg-[#161616] ${
                 actualVoix === item.title
-                  ? 'outline-4 outline-(--color-primary)'
+                  ? 'outline-2 outline-[#DFDFDF]'
                   : 'hover:text-(--color-primary)'
               }`}
             >
-              <div className="relative w-16 h-16 flex justify-center items-center cursor-pointer">
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  width={64}
-                  height={64}
-                  className="max-w-full max-h-full min-w-full min-h-full object-cover rounded-full"
-                />
+              <div
+                className="relative w-16 h-16 flex justify-center items-center cursor-pointer rounded-full"
+                style={{
+                  background: `url(${item.src}) no-repeat center / cover`,
+                }}
+              >
                 <Image
                   src="/icons/play-simple.svg"
                   alt="Play"

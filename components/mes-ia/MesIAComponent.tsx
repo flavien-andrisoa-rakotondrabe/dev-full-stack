@@ -1,45 +1,68 @@
 import Image from 'next/image';
-import TopMenu from '../TopMenu';
+import TopMenu from '../generer/TopMenu';
+import UserProfile from '../UserProfile';
 
 const mesIAData = [{ name: 'Elizabeth Garcia', src: '/images/elizabeth.png' }];
 
 const MesIAComponent = () => {
   return (
-    <div className="flex flex-col gap-[50px]">
-      <div className="flex flex-col gap-2">
-        <h1 className="font-bold text-[40px]">Générateur d'Images et vidéos</h1>
-        <p className="font-medium text-[16px]">Choisir un personnage</p>
+    <div className="p-8 flex flex-col gap-[47px]">
+      <div className="flex justify-end">
+        <UserProfile />
       </div>
 
       <div className="flex flex-col gap-[50px]">
-        <TopMenu />
+        <h1 className="font-bold text-[40px]">
+          Mon <span className="text-(--color-primary)">IA</span>
+        </h1>
+
         <div className="flex flex-wrap gap-x-7 gap-y-[42px]">
+          <div className="relative w-[320px] h-[336px] bg-(--color-primary) rounded-4xl">
+            <div className="w-full h-full flex justify-center items-center p-4 cursor-pointer">
+              <div className="flex flex-col justify-center items-center gap-8">
+                <Image
+                  src="/icons/plus.svg"
+                  alt="Plus"
+                  width={48}
+                  height={48}
+                  className=""
+                />
+                <h5 className="font-bold text-[20px]">Créer une nouvelle IA</h5>
+              </div>
+            </div>
+          </div>
+
           {mesIAData.map((item, index) => (
             <div
               key={`${item.name}-${index}`}
-              className="relative w-[235px] h-[280px]"
+              className="relative w-[320px] h-[336px] rounded-4xl"
+              style={{
+                background: `url(${item.src}) no-repeat center / cover`,
+              }}
             >
-              <Image
-                src={item.src}
-                alt={item.name}
-                width={235}
-                height={280}
-                className="max-w-[235px] max-h-[280px] min-w-[235px] min-h-[280px] object-cover rounded-4xl"
-              />
-              <div className="absolute bottom-0 left-0 w-full p-4">
-                <div
-                  className="flex justify-center items-center py-[5px] backdrop-blur-2xl rounded-full"
-                  style={{
-                    background:
-                      'linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
-                  }}
-                >
-                  <p className="font-medium text-[16px]">{item.name}</p>
+              <div className="w-12 h-12 absolute z-10 top-4 right-4 cursor-pointer">
+                <Image
+                  src="/icons/discuter.svg"
+                  alt="Discuter"
+                  width={48}
+                  height={48}
+                  className="w-full h-full"
+                />
+              </div>
+              <div className="relative w-full h-full z-10 flex items-end p-4">
+                <div className="w-[245px] flex flex-col gap-4 py-[5px]">
+                  <h6 className="font-bold text-[20px]">{item.name}</h6>
+                  <p className="font-medium text-[14px]">22 ans</p>
+                  <p className="font-medium text-[14px]">
+                    Etudiante passionné de séries, amatrice de soirées et férue
+                    de voiture.
+                  </p>
                 </div>
               </div>
+              <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
             </div>
           ))}
-        </div>{' '}
+        </div>
       </div>
     </div>
   );

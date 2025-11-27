@@ -32,17 +32,13 @@ const OriginSection = ({
             {originOptions.map((item) => (
               <div
                 key={`origin-${item.title}`}
-                className="relative w-[203px] h-[264px] cursor-pointer"
+                className="relative w-[203px] h-[264px] cursor-pointer rounded-4xl"
+                style={{
+                  background: `url(${item.src}) no-repeat center / cover`,
+                }}
                 onClick={() => setOrigin(item)}
               >
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  width={203}
-                  height={264}
-                  className="w-full h-full object-cover rounded-4xl"
-                />
-                <div className="absolute z-10 bottom-0 w-full flex justify-center p-4">
+                <div className="relative z-10 w-full h-full flex justify-center items-end p-4">
                   <p className="font-bold text-[24px]">{item.title}</p>
                 </div>
                 {item.title !== origin.title && (
@@ -67,7 +63,7 @@ const OriginSection = ({
                 'linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
             }}
           >
-            <div className="flex justify-center items-center w-max p-2.5 border border-(--color-primary) rounded-xl">
+            <div className="flex justify-center items-center w-max p-2.5 border border-(--color-primary) rounded-[8px]">
               <p className="font-medium text-[16px] uppercase">{age} ANS</p>
             </div>
             <div className="w-full flex items-center gap-5 font-semibold text-[16px]">

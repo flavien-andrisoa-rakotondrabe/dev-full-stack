@@ -10,3 +10,17 @@ export const routes = [
   },
   { label: 'Mes IA', src: '/icons/mes-ia.svg', href: '/mes-ia' },
 ];
+
+export const genererMenu = ['Post', 'Au feeling', 'Mes IA'];
+
+export const genreMenu = ['Femmes', 'Hommes'];
+
+export const generateurMenu = ['Image', 'Vidéo'];
+
+export const suggestionMenu = [
+  'Vetements',
+  'Actions',
+  'Poses',
+  'Accessoires',
+  'Scenes',
+];

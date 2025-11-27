@@ -6,13 +6,13 @@ import Link from 'next/link';
 import { routes } from '@/lib/route';
 import { usePathname } from 'next/navigation';
 
-const SideBar = () => {
+const SideBar = ({ mini }: { mini: boolean }) => {
   const pathname = usePathname();
 
   return (
     <div
       className={`h-full z-50 p-2 border-r border-[#FBF9F9] bg-[#0a0a0a] ${
-        pathname === '/discuter' ? 'w-[117px]' : 'w-[117px] lg:w-[352px]'
+        mini ? 'w-[117px]' : 'w-[117px] lg:w-[352px]'
       }`}
     >
       <Link href="/" className="flex pt-[17px] ps-8 lg:ps-10">
@@ -21,18 +21,14 @@ const SideBar = () => {
           alt="Logo"
           height={42}
           width={143}
-          className={`${
-            pathname === '/discuter' ? 'hidden' : 'hidden lg:block'
-          }`}
+          className={`${mini ? 'hidden' : 'hidden lg:block'}`}
         />
         <Image
           src="/images/mini-logo.svg"
           alt="Logo"
           height={32}
           width={32}
-          className={`${
-            pathname === '/discuter' ? 'block' : 'block lg:hidden'
-          }`}
+          className={`${mini ? 'block' : 'block lg:hidden'}`}
         />
       </Link>
       <div className="h-[57px]"></div>
@@ -45,7 +41,7 @@ const SideBar = () => {
               pathname === item.href
                 ? 'bg-(--color-primary)/70 cursor-default hover:bg-(--color-primary)/70'
                 : ''
-            } ${pathname === '/discuter' ? 'ps-9' : 'ps-9 lg:ps-12'}`}
+            } ${mini ? 'ps-9' : 'ps-9 lg:ps-12'}`}
           >
             <Image
               src={item.src}
@@ -54,11 +50,7 @@ const SideBar = () => {
               height={24}
               className=""
             />
-            <span
-              className={`${
-                pathname === '/discuter' ? 'hidden' : 'hidden lg:block'
-              }`}
-            >
+            <span className={`${mini ? 'hidden' : 'hidden lg:block'}`}>
               {item.label}
             </span>
           </Link>
@@ -68,7 +60,7 @@ const SideBar = () => {
       <Link
         href="/"
         className={`h-[50px] flex items-center gap-2 hover:bg-(--color-primary)/50 rounded-md select-none transition ${
-          pathname === '/discuter' ? 'ps-10' : 'ps-10 lg:ps-12'
+          mini ? 'ps-10' : 'ps-10 lg:ps-12'
         }`}
       >
         <Image
@@ -78,11 +70,7 @@ const SideBar = () => {
           height={24}
           className=""
         />
-        <span
-          className={`${
-            pathname === '/discuter' ? 'hidden' : 'hidden lg:block'
-          }`}
-        >
+        <span className={`${mini ? 'hidden' : 'hidden lg:block'}`}>
           Revenir dans myXplace
         </span>
       </Link>
